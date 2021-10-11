@@ -24,6 +24,7 @@ const handleFilter = _.debounce((inputValue, coinList, setFilteredCoins) => {
     let coinSymbols = Object.keys(coinList);
     //get all the coins names and map symbol to name
     let coinNames = coinSymbols.map((symbol) => coinList[symbol].CoinName);
+
     let allStringsToSearch = coinSymbols.concat(coinNames);
 
     let fuzzyResults = fuzzy
@@ -37,14 +38,15 @@ const handleFilter = _.debounce((inputValue, coinList, setFilteredCoins) => {
             _.includes(fuzzyResults, coinName)
         );
     });
-    console.log(filteredCoins);
     setFilteredCoins(filteredCoins);
 }, 500);
 
 const filterCoins = (event, setFilteredCoins, coinList) => {
     let inputValue = event.target.value;
+    console.log('filterCoins inputValue: ', inputValue);
     if (!inputValue) {
         setFilteredCoins(null);
+        return;
     }
     handleFilter(inputValue, coinList, setFilteredCoins);
 };

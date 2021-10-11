@@ -22,15 +22,21 @@ const ControlButtonEl = styled.div`
             font-weight: 900;
             text-shadow: 5px 5px 30px white;
         `};
+    ${(props) =>
+        props.hidden &&
+        css`
+            display: none;
+        `}
 `;
 
 const ControlButton = ({ name }) => {
     return (
         <AppContext.Consumer>
-            {({ page, setPage }) => (
+            {({ firstVisit, page, setPage }) => (
                 <ControlButtonEl
                     active={page === name}
                     onClick={() => setPage(name)}
+                    hidden={firstVisit && name === 'dashboard'}
                 >
                     {name}
                 </ControlButtonEl>

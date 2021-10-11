@@ -9,7 +9,7 @@ const StyledCoingGrid = styled.div`
 `;
 
 function getLowerSectionCoins(coinList, filteredCoins) {
-    console.log('getLowerSectionCoins', filteredCoins);
+    console.log('getLowerSectionCoins filteredCoins', filteredCoins);
     return (
         (filteredCoins && Object.keys(filteredCoins)) ||
         Object.keys(coinList).slice(0, 100)
@@ -33,7 +33,7 @@ const CoinGrid = ({ topSection }) => {
                         favorites,
                         filteredCoins
                     ).map((e) => (
-                        <CoinTile coinKey={e} topSection={topSection} />
+                        <CoinTile key={e} coinKey={e} topSection={topSection} />
                     ))}
                 </StyledCoingGrid>
             )}
